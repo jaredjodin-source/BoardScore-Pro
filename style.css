@@ -1,1 +1,169 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
+
+body {
+    min-height: 100vh;
+    background: #121212;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* En-tête */
+
+header {
+    text-align: center;
+    padding: 25px 10px;
+    background: #1f1f1f;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+
+header h1 {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+
+header p {
+    color: #bbbbbb;
+}
+
+
+/* Contenu */
+
+main {
+    flex: 1;
+    padding: 25px;
+    max-width: 900px;
+    width: 100%;
+    margin: auto;
+}
+
+
+section {
+    background: #1e1e1e;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+
+/* Boutons */
+
+button {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 15px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+
+button:hover {
+    transform: scale(1.03);
+}
+
+
+.main-button {
+    background: #4caf50;
+    color: white;
+}
+
+
+#add-player {
+    background: #2196f3;
+    color: white;
+}
+
+
+#start-game {
+    background: #ff9800;
+    color: white;
+}
+
+
+/* Joueurs */
+
+#players-container {
+    display: grid;
+    gap: 15px;
+}
+
+
+.player-card {
+    background: #292929;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+
+.player-card h3 {
+    margin-bottom: 10px;
+}
+
+
+.score {
+    font-size: 45px;
+    font-weight: bold;
+    margin: 15px;
+}
+
+
+.score-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+
+.score-buttons button {
+    margin: 0;
+    background: #333;
+}
+
+
+/* Cacher */
+
+.hidden {
+    display: none;
+}
+
+
+/* Pied de page */
+
+footer {
+    text-align: center;
+    padding: 15px;
+    color: #888;
+}
+
+
+/* Téléphone */
+
+@media(max-width:600px){
+
+    header h1 {
+        font-size: 28px;
+    }
+
+    main {
+        padding: 15px;
+    }
+
+}
