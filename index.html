@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>BoardScore Pro</title>
@@ -11,76 +14,149 @@
     <link rel="manifest" href="manifest.json">
 
     <meta name="theme-color" content="#222222">
+
 </head>
+
 
 <body>
 
-    <header>
-        <h1>🎲 BoardScore Pro</h1>
-        <p>Le compteur ultime pour tous tes jeux de société</p>
-    </header>
+
+<header>
+
+    <h1>🎲 BoardScore Pro</h1>
+
+    <p>
+        Le compteur ultime pour tous tes jeux de société
+    </p>
+
+</header>
 
 
-    <main>
 
-        <section id="home">
-            <h2>Choisis ton mode</h2>
-
-            <button class="main-button">
-                🎮 Nouvelle partie
-            </button>
-
-            <button class="main-button">
-                📂 Charger une partie
-            </button>
-
-            <button class="main-button">
-                ⚙️ Paramètres
-            </button>
-        </section>
+<main>
 
 
-        <section id="game" class="hidden">
-
-            <h2 id="game-title">
-                Partie en cours
-            </h2>
+<section id="home">
 
 
-            <div id="players-container">
-
-                <!-- Les joueurs seront ajoutés automatiquement en JavaScript -->
-
-            </div>
+    <h2>
+        Choisis ton jeu
+    </h2>
 
 
-            <button id="add-player">
-                ➕ Ajouter un joueur
-            </button>
+
+    <!-- Liste des jeux -->
+
+    <div id="games-container">
+
+        <!-- Les jeux seront ajoutés automatiquement -->
+
+    </div>
 
 
-            <button id="start-game">
-                🚀 Commencer
-            </button>
+
+    <h2>
+        Gestion de partie
+    </h2>
 
 
-        </section>
+    <button class="main-button">
+
+        🎮 Nouvelle partie
+
+    </button>
 
 
-    </main>
+
+    <button class="main-button">
+
+        📂 Charger une partie
+
+    </button>
 
 
-    <footer>
 
-        <p>
-            BoardScore Pro © 2026
-        </p>
+    <button class="main-button">
 
-    </footer>
+        ⚙️ Paramètres
+
+    </button>
+
+
+
+</section>
+
+
+
+
+
+<section id="game" class="hidden">
+
+
+    <h2 id="game-title">
+
+        Partie en cours
+
+    </h2>
+
+
+
+    <div id="players-container">
+
+        <!-- Les joueurs apparaîtront ici -->
+
+    </div>
+
+
+
+
+    <button id="add-player">
+
+        ➕ Ajouter un joueur
+
+    </button>
+
+
+
+
+    <button id="start-game">
+
+        🚀 Commencer la partie
+
+    </button>
+
+
+
+</section>
+
+
+
+
+</main>
+
+
+
+
+<footer>
+
+
+<p>
+
+BoardScore Pro © 2026
+
+</p>
+
+
+</footer>
+
+
 
 
 <script src="games/games.js"></script>
+
 <script src="script.js"></script>
 
+
 </body>
+
 </html>
