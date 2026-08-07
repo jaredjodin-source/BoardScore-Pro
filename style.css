@@ -167,3 +167,25 @@ footer {
     }
 
 }
+#games-container {
+
+    display: grid;
+    gap: 15px;
+    margin-top: 20px;
+
+}
+
+
+#games-container .player-card {
+
+    cursor: pointer;
+
+}
+
+
+#games-container button {
+
+    background: #9c27b0;
+    color: white;
+
+}
