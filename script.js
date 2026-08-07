@@ -176,3 +176,68 @@ function loadGame(){
 
 
 loadGame();
+// Affichage des jeux
+
+function displayGames(){
+
+    const container = document.getElementById("games-container");
+
+    if(!container) return;
+
+
+    container.innerHTML = "";
+
+
+    games.forEach((game)=>{
+
+
+        let card = document.createElement("div");
+
+        card.className = "player-card";
+
+
+        card.innerHTML = `
+
+            <h3>${game.name}</h3>
+
+            <p>${game.description}</p>
+
+            <p>👥 ${game.maxPlayers} joueurs maximum</p>
+
+
+            <button onclick="selectGame('${game.id}')">
+                Jouer
+            </button>
+
+        `;
+
+
+        container.appendChild(card);
+
+
+    });
+
+}
+
+
+
+// Sélection d'un jeu
+
+let selectedGame = null;
+
+
+function selectGame(id){
+
+    selectedGame = getGame(id);
+
+
+    alert(
+        "Jeu sélectionné : " + selectedGame.name
+    );
+
+}
+
+
+// Lancer l'affichage au démarrage
+
+displayGames();
