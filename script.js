@@ -1,68 +1,178 @@
+// BoardScore Pro
+// Système principal
+
+
 let players = [];
+
+let selectedGame = null;
 
 let gameStarted = false;
 
 
-// Boutons principaux
 
-const newGameButton = document.querySelector(".main-button");
+// Éléments HTML
+
 const home = document.getElementById("home");
 const game = document.getElementById("game");
+
+const gamesContainer = document.getElementById("games-container");
 
 const playersContainer = document.getElementById("players-container");
 
 const addPlayerButton = document.getElementById("add-player");
+
 const startButton = document.getElementById("start-game");
+
+const newGameButton = document.querySelector(".main-button");
+
+
+
+
+// Afficher les jeux
+
+function displayGames(){
+
+    gamesContainer.innerHTML = "";
+
+
+    games.forEach((game)=>{
+
+
+        const card = document.createElement("div");
+
+        card.className = "player-card";
+
+
+        card.innerHTML = `
+
+            <h3>${game.name}</h3>
+
+            <p>${game.description}</p>
+
+            <p>👥 Maximum : ${game.maxPlayers}</p>
+
+
+            <button onclick="selectGame('${game.id}')">
+
+                Choisir
+
+            </button>
+
+        `;
+
+
+        gamesContainer.appendChild(card);
+
+
+    });
+
+}
+
+
+
+
+// Choisir un jeu
+
+function selectGame(id){
+
+
+    selectedGame = getGame(id);
+
+
+    document.getElementById("game-title").innerHTML =
+    selectedGame.name;
+
+
+    alert(
+        "Tu as choisi : " + selectedGame.name
+    );
+
+
+}
+
+
 
 
 // Nouvelle partie
 
-newGameButton.addEventListener("click", () => {
+newGameButton.addEventListener("click",()=>{
+
+
+    if(!selectedGame){
+
+        alert("Choisis d'abord un jeu !");
+        return;
+
+    }
+
 
     home.classList.add("hidden");
+
     game.classList.remove("hidden");
+
 
 });
 
 
+
+
+
 // Ajouter un joueur
 
-addPlayerButton.addEventListener("click", () => {
+addPlayerButton.addEventListener("click",()=>{
+
 
     if(gameStarted){
+
         return;
+
     }
 
 
-    let name = prompt("Nom du joueur :");
+    let name = prompt(
+        "Nom du joueur :"
+    );
 
 
-    if(name && name.trim() !== ""){
+    if(name){
+
 
         players.push({
 
-            name: name,
-            score: 0
+            name:name,
+
+            score:0,
+
+            rounds:[]
 
         });
 
 
         saveGame();
+
         displayPlayers();
 
+
     }
+
 
 });
 
 
 
-// Démarrer la partie
 
-startButton.addEventListener("click", () => {
+
+// Démarrer
+
+startButton.addEventListener("click",()=>{
+
 
     if(players.length < 1){
 
-        alert("Ajoute au moins un joueur !");
+        alert(
+            "Ajoute au moins un joueur"
+        );
+
         return;
 
     }
@@ -70,50 +180,54 @@ startButton.addEventListener("click", () => {
 
     gameStarted = true;
 
-    startButton.style.display = "none";
 
-    displayPlayers();
+    startButton.style.display="none";
+
 
 });
 
 
 
-// Afficher les joueurs
+
+
+
+// Affichage joueurs
 
 function displayPlayers(){
 
-    playersContainer.innerHTML = "";
+
+    playersContainer.innerHTML="";
 
 
     players.forEach((player,index)=>{
 
 
-        let card = document.createElement("div");
-
-        card.className = "player-card";
+        let card=document.createElement("div");
 
 
-        card.innerHTML = `
-
-            <h3>${player.name}</h3>
-
-            <div class="score">
-                ${player.score}
-            </div>
+        card.className="player-card";
 
 
-            <div class="score-buttons">
+        card.innerHTML=`
 
-                <button onclick="changeScore(${index},1)">
-                    +1
-                </button>
+        <h3>${player.name}</h3>
 
 
-                <button onclick="changeScore(${index},-1)">
-                    -1
-                </button>
+        <div class="score">
 
-            </div>
+        ${player.score}
+
+        </div>
+
+
+        <button onclick="changeScore(${index},1)">
+        +1
+        </button>
+
+
+        <button onclick="changeScore(${index},-1)">
+        -1
+        </button>
 
         `;
 
@@ -123,11 +237,14 @@ function displayPlayers(){
 
     });
 
+
 }
 
 
 
-// Modifier un score
+
+
+// Modifier score
 
 function changeScore(index,value){
 
@@ -144,100 +261,65 @@ function changeScore(index,value){
 
 
 
-// Sauvegarde automatique
+
+
+
+// Sauvegarde
 
 function saveGame(){
 
+
     localStorage.setItem(
+
         "BoardScoreSave",
-        JSON.stringify(players)
+
+        JSON.stringify({
+
+            players:players,
+
+            game:selectedGame
+
+        })
+
     );
+
 
 }
 
 
 
-// Charger une ancienne partie
+
+// Chargement
 
 function loadGame(){
 
-    let save = localStorage.getItem("BoardScoreSave");
+
+    let save =
+    localStorage.getItem(
+        "BoardScoreSave"
+    );
 
 
     if(save){
 
-        players = JSON.parse(save);
+
+        let data=JSON.parse(save);
+
+
+        players=data.players || [];
+
 
         displayPlayers();
 
+
     }
 
-}
-
-
-loadGame();
-// Affichage des jeux
-
-function displayGames(){
-
-    const container = document.getElementById("games-container");
-
-    if(!container) return;
-
-
-    container.innerHTML = "";
-
-
-    games.forEach((game)=>{
-
-
-        let card = document.createElement("div");
-
-        card.className = "player-card";
-
-
-        card.innerHTML = `
-
-            <h3>${game.name}</h3>
-
-            <p>${game.description}</p>
-
-            <p>👥 ${game.maxPlayers} joueurs maximum</p>
-
-
-            <button onclick="selectGame('${game.id}')">
-                Jouer
-            </button>
-
-        `;
-
-
-        container.appendChild(card);
-
-
-    });
 
 }
 
 
 
-// Sélection d'un jeu
-
-let selectedGame = null;
-
-
-function selectGame(id){
-
-    selectedGame = getGame(id);
-
-
-    alert(
-        "Jeu sélectionné : " + selectedGame.name
-    );
-
-}
-
-
-// Lancer l'affichage au démarrage
 
 displayGames();
+
+loadGame();
